@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Registration Form</h2>
+        <form id="registrationForm">
+            <label for="firstname">First name:</label>
+            <input type="text" class="form-control" id="firstname" name="firstname" required="">
+            
+            <label for="lastname">Last name:</label>
+            <input type="text" class="form-control" id="lastname" name="lastname" required="">
+            
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" required="">
+            
+            <label for="phone">Phone:</label>
+            <input type="text" class="form-control" id="phone" name="phone" required="">
+            
+            <label for="address">Address:</label>
+            <textarea id="address" class="form-control" name="address" required=""></textarea>
+            
+            <button type="submit">Submit</button>
+        </form>
+
+        <div id="successMessage" style="display:none;">
+            <h3>Form submitted successfully!</h3>
+            <p id="displayData"></p>
+        </div>
+    </div>
+
+    <script src="jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#registrationForm").on("submit", function (event) {
+                event.preventDefault();
+
+                const firstname = $("#firstname").val(); // Get first name
+                const lastname = $("#lastname").val(); // Get last name
+                const email = $("#email").val(); // Get email
+                const phone = $("#phone").val(); // Get phone
+                const address = $("#address").val(); // Get address
+
+                const name = `${firstname} ${lastname}`; // Concatenate first and last name
+
+                const displayData = `
+                    <strong>Name:</strong> ${name}<br>
+                    <strong>Email:</strong> ${email}<br>
+                    <strong>Phone:</strong> ${phone}<br>
+                    <strong>Address:</strong> ${address}
+                `;
+
+                $("#displayData").html(displayData); // Display data
+                $("#successMessage").show(); // Show success message
+            });
+        });
+    </script>
+</body>
+</html>
